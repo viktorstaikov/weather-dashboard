@@ -33,13 +33,15 @@ function genLabel(value) {
 
 export default function Chart(props) {
   const { series } = props;
-  const mapped = series.map(item => {
-    return {
-      label: genLabel(item.timestamp),
-      min: item.temp_min,
-      max: item.temp_max
-    };
-  });
+  const mapped = !series
+    ? []
+    : series.map(item => {
+        return {
+          label: genLabel(item.timestamp),
+          min: item.temp_min,
+          max: item.temp_max
+        };
+      });
   return (
     <React.Fragment>
       <Title>Temperature</Title>
