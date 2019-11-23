@@ -33,26 +33,6 @@ function genLabel(value) {
   return s;
 }
 
-function CustomizedLabel(props) {
-  const { x, y, stroke, value } = props;
-  const label = genLabel(value);
-  return (
-    <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
-      {label}
-    </text>
-  );
-}
-
-function CustomizedAxisTick(props) {
-  const { x, y, payload } = props;
-  const label = genLabel(payload.value);
-  return (
-    <text x={x} y={y} dy={16} textAnchor="end" fill="#666">
-      {label}
-    </text>
-  );
-}
-
 export default function Chart(props) {
   const { series } = props;
   const mapped = series.map(item => {
