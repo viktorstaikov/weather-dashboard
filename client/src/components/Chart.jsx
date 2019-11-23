@@ -15,17 +15,15 @@ import moment from 'moment';
 function genLabel(value) {
   const m = moment(value);
 
-  const startOfDay = moment(value).startOf('day');
-  const today = moment().startOf('day');
-  const tomorrow = moment()
-    .add(1, 'day')
-    .startOf('day');
+  const startOfDay = moment(value);
+  const today = moment();
+  const tomorrow = moment().add(1, 'day');
 
   let s = value;
 
-  if (startOfDay === today) {
+  if (startOfDay.isSame(today, 'day')) {
     s = 'Today, ' + m.format('HH:mm');
-  } else if (startOfDay === tomorrow) {
+  } else if (startOfDay.isSame(tomorrow, 'day')) {
     s = 'Tomorrow, ' + m.format('HH:mm');
   } else {
     s = m.format('DD.MM, HH:mm');
