@@ -4,6 +4,8 @@
   "description": "API for weather dashbaord",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "test"
   },
   "author": "",
