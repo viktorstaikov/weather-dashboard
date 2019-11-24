@@ -37,7 +37,7 @@ export class WindChart extends Component {
             lineWidth={speed}
             style={{
               width: '100px',
-              height: '100px',
+              height: '100%',
             }}
           />
         </div>

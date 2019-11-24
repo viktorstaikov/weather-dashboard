@@ -27,7 +27,7 @@ export class UvChart extends Component {
       <Container className={classes.root}>
         <div className={classes.chart}>
           <PieChart width={200} height={100}>
-            <Pie dataKey="value" startAngle={180} endAngle={0} data={data} innerRadius={60} outerRadius={80} cy={100}>
+            <Pie dataKey="value" startAngle={180} endAngle={0} data={data} innerRadius={60} outerRadius={80} cy={85}>
               <Cell fill="blue" />
               <Cell fill="gray" />
             </Pie>

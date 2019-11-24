@@ -1,8 +1,6 @@
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
+import { Container, Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -85,41 +83,37 @@ export class Dashboard extends Component {
 
     return (
       <Container maxWidth="lg" className={classes.container}>
-        <ExpansionPanel defaultExpanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography className={classes.heading}>Temperature chart</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={fixedHeightPaper}>
-            <TempChart series={tempSeries} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel defaultExpanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
-            <Typography className={classes.heading}>Daily forecast</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classes.paper}>
-            <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+        <Grid container spacing={3} className={classes.container}>
+          <Grid item xs={12}>
+            <Paper>
+              <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
+            </Paper>
+          </Grid>
 
-        <ExpansionPanel defaultExpanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography className={classes.heading}>More graphs</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={fixedHeightPaper}>
-            <Grid container spacing={3}>
-              <Grid item xs={4} className={fixedHeightPaper}>
-                <DataChart series={humiditySeries} title="Humidity" yAxisLabel="Percentage %" />
-              </Grid>
-              <Grid item xs={4} className={fixedHeightPaper}>
-                <DataChart series={pressureSeries} title="Atmospheric pressure" yAxisLabel="Hectopascals" />
-              </Grid>
-              <Grid item xs={4} className={fixedHeightPaper}>
-                <DataChart series={rainSeries} title="Rain volume per 3 hours" yAxisLabel="mm" />
-              </Grid>
-            </Grid>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          <Grid item xs={12}>
+            <Paper className={fixedHeightPaper}>
+              <TempChart series={tempSeries} />
+            </Paper>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Paper className={fixedHeightPaper}>
+              <DataChart series={humiditySeries} title="Humidity" yAxisLabel="Percentage %" />
+            </Paper>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Paper className={fixedHeightPaper}>
+              <DataChart series={pressureSeries} title="Atmospheric pressure" yAxisLabel="Hectopascals" />
+            </Paper>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Paper className={fixedHeightPaper}>
+              <DataChart series={rainSeries} title="Rain volume per 3 hours" yAxisLabel="mm" />
+            </Paper>
+          </Grid>
+        </Grid>
       </Container>
     );
   }
