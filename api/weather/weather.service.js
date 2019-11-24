@@ -64,7 +64,7 @@ class WeatherSeries {
     return this.data.then(({ list }) => {
       const mapped = list.map(i => this.mapItem(i));
       const series = mapped.map(item => {
-        return { timestamp: item.timestamp, pressure: item.pressure };
+        return { timestamp: item.timestamp, value: item.pressure };
       });
       return series;
     });
@@ -74,7 +74,7 @@ class WeatherSeries {
     return this.data.then(({ list }) => {
       const mapped = list.map(i => this.mapItem(i));
       const series = mapped.map(item => {
-        return { timestamp: item.timestamp, humidity: item.humidity };
+        return { timestamp: item.timestamp, value: item.humidity };
       });
       return series;
     });
@@ -84,7 +84,7 @@ class WeatherSeries {
     return this.data.then(({ list }) => {
       const mapped = list.map(i => this.mapItem(i));
       const series = mapped.map(item => {
-        return { timestamp: item.timestamp, rain: item.rain };
+        return { timestamp: item.timestamp, value: item.rain };
       });
       return series;
     });
@@ -97,6 +97,11 @@ class WeatherSeries {
         const itemDate = moment(item.dt * 1000);
         return m.isSame(itemDate, 'day');
       });
+
+      // handle when the method is called just before Midnight and no data is available for today
+      if (!forTheDay.length) {
+        forTheDay.push(list[0]);
+      }
       const mapped = forTheDay.map(i => this.mapItem(i));
       const avgItem = this.getAvg(mapped);
 
