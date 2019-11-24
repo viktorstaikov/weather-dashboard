@@ -21,7 +21,7 @@ function Loading(props) {
       >
         👋
       </span>
-      <Typography variant="h6">Waiting for input</Typography>
+      <Typography variant="h6">Loading...</Typography>
     </div>
   );
 }

@@ -45,6 +45,9 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
   },
+  minHeight: {
+    minHeight: '240px',
+  },
 });
 
 export class DailySection extends Component {
@@ -84,7 +87,7 @@ export class DailySection extends Component {
       const content = this.state.value === idx && forecast ? <Forecast data={forecast} /> : <Loading loading={true} />;
 
       return (
-        <TabPanel value={this.state.value} index={idx} key={idx} dir="ltr">
+        <TabPanel className={classes.minHeight} value={this.state.value} index={idx} key={idx} dir="ltr">
           {content}
         </TabPanel>
       );

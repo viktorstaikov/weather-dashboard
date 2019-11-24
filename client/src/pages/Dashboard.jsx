@@ -27,7 +27,9 @@ const styles = theme => ({
   },
   fixedHeight: {
     height: 240,
-    // minHeight: 240,
+  },
+  minHeight: {
+    minHeight: 240,
   },
 });
 export class Dashboard extends Component {
@@ -79,13 +81,14 @@ export class Dashboard extends Component {
     const { classes } = this.props;
 
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    const minHeight = clsx(classes.paper, classes.minHeight);
     const { tempSeries, days, dailyForecast, humiditySeries, pressureSeries, rainSeries } = this.state;
 
     return (
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3} className={classes.container}>
           <Grid item xs={12}>
-            <Paper>
+            <Paper className={minHeight}>
               <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
             </Paper>
           </Grid>
