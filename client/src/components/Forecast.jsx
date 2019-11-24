@@ -11,6 +11,7 @@ import WeatherCard from './WeatherCard';
 import WindChart from './WindChart';
 import Typography from '@material-ui/core/Typography';
 import { TableHead } from '@material-ui/core';
+import UvChart from './UvChart';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +42,7 @@ export default function Forecast(props) {
 
   const { data } = props;
 
-  const { temp, pressure, humidity, weather, clouds, wind, rain } = data;
+  const { temp, pressure, humidity, weather, clouds, wind, rain, uvIndex } = data;
 
   return (
     <Grid container spacing={3} className={classes.container}>
@@ -99,6 +100,14 @@ export default function Forecast(props) {
             <TableRow>
               <TableCell>
                 <Typography variant="body1" gutterBottom>
+                  Rain
+                </Typography>
+              </TableCell>
+              <TableCell>{Math.ceil(rain)} mm</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
                   Wind
                 </Typography>
               </TableCell>
@@ -109,10 +118,12 @@ export default function Forecast(props) {
             <TableRow>
               <TableCell>
                 <Typography variant="body1" gutterBottom>
-                  Rain
+                  UV Index
                 </Typography>
               </TableCell>
-              <TableCell>{Math.ceil(rain)} mm</TableCell>
+              <TableCell>
+                <UvChart uvIndex={uvIndex}></UvChart>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

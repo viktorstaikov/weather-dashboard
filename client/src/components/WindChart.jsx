@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 const styles = theme => ({
   root: {
@@ -11,16 +11,16 @@ const styles = theme => ({
     flexFlow: 'row nowrap',
   },
   chart: {
-    flex: '1 0 auto',
+    flex: '1 0 200px',
   },
   legend: {
-    flex: '1 1 auto',
+    flex: '1 1 100px',
   },
 });
 
 const directions = ['North', 'NE', 'East', 'SE', 'South', 'SW', 'West', 'NW'];
 
-export class WindChart extends PureComponent {
+export class WindChart extends Component {
   render() {
     const { classes, speed, deg } = this.props;
 
