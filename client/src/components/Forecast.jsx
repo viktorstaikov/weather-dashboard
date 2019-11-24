@@ -10,6 +10,7 @@ import React from 'react';
 import WeatherCard from './WeatherCard';
 import WindChart from './WindChart';
 import Typography from '@material-ui/core/Typography';
+import { TableHead } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +41,7 @@ export default function Forecast(props) {
 
   const { data } = props;
 
-  const { temp, temp_min, temp_max, pressure, humidity, weather, clouds, wind } = data;
+  const { temp, pressure, humidity, weather, clouds, wind } = data;
 
   return (
     <Grid container spacing={3} className={classes.container}>
@@ -50,6 +51,12 @@ export default function Forecast(props) {
 
       <Grid item xs={7}>
         <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
             <TableRow>
               <TableCell>

@@ -1,5 +1,6 @@
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -7,19 +8,14 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Chart from '../components/Chart';
-import DailySection from '../components/DailySection';
 import WeatherApi from '../services/weather-api.service';
+import DailySection from '../components/DailySection';
 
 const styles = theme => ({
   root: {
     display: 'flex',
   },
   appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -68,25 +64,26 @@ export class Dashboard extends Component {
 
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
     const { tempSeries, days, dailyForecast } = this.state;
+
     return (
-      <>
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={12} lg={12}>
-              <Paper className={fixedHeightPaper}>
-                <Chart series={tempSeries} />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={12} lg={12}>
-              <Paper>
-                <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </>
+      <Container maxWidth="lg" className={classes.container}>
+        <ExpansionPanel defaultExpanded={true}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <Typography className={classes.heading}>Temperature chart</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={fixedHeightPaper}>
+            <Chart series={tempSeries} />
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel defaultExpanded={true}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
+            <Typography className={classes.heading}>Daily forecast</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.paper}>
+            <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </Container>
     );
   }
 }

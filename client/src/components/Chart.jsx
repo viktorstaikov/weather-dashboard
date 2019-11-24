@@ -32,7 +32,7 @@ export default function Chart(props) {
       });
   return (
     <React.Fragment>
-      <Title>Temperature</Title>
+      <Title>Temperature&deg;</Title>
       <ResponsiveContainer>
         <AreaChart
           data={mapped}
@@ -58,7 +58,7 @@ export default function Chart(props) {
           <XAxis dataKey="label"></XAxis>
           <YAxis>
             <Label angle={270} position="left" style={{ textAnchor: 'middle' }}>
-              Degrees Celsius&deg;
+              Degrees Celsius
             </Label>
           </YAxis>
 
