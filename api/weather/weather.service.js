@@ -4,11 +4,31 @@ const moment = require('moment');
 
 class WeatherSeries {
   constructor() {
+    this.uvUrl = 'http://api.openweathermap.org/data/2.5/uvi/forecast';
     this.url = 'http://api.openweathermap.org/data/2.5/forecast';
     this.appid = 'd5a332c2fd770645632f720a59006d58';
 
     this._weatherRequest = null;
     this._weatherData = null;
+
+    this._uvRequest = null;
+    this._uvData = null;
+  }
+
+  get uvData() {
+    // weather data gets old more frequently that uv data
+    if (!this._uvRequest || (this._uvData && this.isDataOld())) {
+      this._uvData = null;
+      this._uvRequest = axios
+        .get(this.uvUrl, {
+          params: { lat: '42.6979', lon: '23.3222', appid: 'd5a332c2fd770645632f720a59006d58' }
+        })
+        .then(r => {
+          this._uvData = r.data;
+          return this._uvData;
+        });
+    }
+    return this._uvRequest;
   }
 
   get data() {
@@ -92,7 +112,8 @@ class WeatherSeries {
 
   async getForecast(date) {
     const m = moment(date);
-    return this.data.then(({ list }) => {
+    return Promise.all([this.data, this.uvData]).then(([data, uvData]) => {
+      const list = data.list;
       const forTheDay = list.filter(item => {
         const itemDate = moment(item.dt * 1000);
         return m.isSame(itemDate, 'day');
@@ -105,6 +126,11 @@ class WeatherSeries {
       const mapped = forTheDay.map(i => this.mapItem(i));
       const avgItem = this.getAvg(mapped);
 
+      const uvItem = uvData.find(item => {
+        const itemDate = moment(item.date * 1000);
+        return m.isSame(itemDate, 'day');
+      });
+
       const r = {
         temp: avgItem.temp,
         temp_min: avgItem.temp_min,
@@ -114,7 +140,8 @@ class WeatherSeries {
         weather: avgItem.weather,
         clouds: avgItem.clouds,
         wind: avgItem.wind,
-        rain: avgItem.rain
+        rain: avgItem.rain,
+        uvIndex: uvItem ? uvItem.value : 0
       };
       return r;
     });
