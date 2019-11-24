@@ -1,4 +1,3 @@
-import Loading from './Loading';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { lighten, makeStyles, withStyles } from '@material-ui/core/styles';
@@ -9,6 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import PropTypes from 'prop-types';
 import React from 'react';
 import WeatherCard from './WeatherCard';
+import WindChart from './WindChart';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,40 +44,62 @@ export default function Forecast(props) {
 
   return (
     <Grid container spacing={3} className={classes.container}>
-      <Grid item xs={6}>
+      <Grid item xs={5}>
         <WeatherCard code={weather.icon} condition={weather.main} description={weather.description}></WeatherCard>
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         <Table size="small">
           <TableBody>
             <TableRow>
-              <TableCell>Temperature C&deg; (min - max)</TableCell>
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
+                  Temperature C&deg; (min - max)
+                </Typography>
+              </TableCell>
               <TableCell>
                 {Math.ceil(temp)}&deg; ({Math.ceil(temp_min)}&deg; - {Math.ceil(temp_max)}&deg;)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Pressure</TableCell>
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
+                  Pressure
+                </Typography>
+              </TableCell>
               <TableCell>{Math.ceil(pressure)} hPa</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Humidity</TableCell>
-              {/* <LinearProgress variant="determinate" value={humidity} /> */}
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
+                  Humidity
+                </Typography>
+              </TableCell>
               <TableCell>
                 <BorderLinearProgress variant="determinate" value={humidity} />
                 {Math.floor(humidity)}%
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Clouds</TableCell>
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
+                  Clouds
+                </Typography>
+              </TableCell>
               <TableCell>
                 <BorderLinearProgress variant="determinate" value={clouds} />
                 {Math.floor(clouds)}%
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Wind</TableCell>
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
+                  Wind
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <WindChart speed={wind.speed} deg={wind.deg}></WindChart>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

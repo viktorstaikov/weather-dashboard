@@ -64,7 +64,6 @@ export class Dashboard extends Component {
   }
 
   render() {
-    // const classes = useStyles();
     const { classes } = this.props;
 
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
