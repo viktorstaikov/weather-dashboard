@@ -27,7 +27,7 @@ export default function Chart(props) {
         return {
           label: genLabel(item.timestamp),
           min: item.temp_min,
-          max: item.temp_max
+          max: item.temp_max,
         };
       });
   return (
@@ -40,7 +40,7 @@ export default function Chart(props) {
             top: 16,
             right: 16,
             bottom: 0,
-            left: 24
+            left: 24,
           }}
         >
           <defs>
@@ -58,7 +58,7 @@ export default function Chart(props) {
           <XAxis dataKey="label"></XAxis>
           <YAxis>
             <Label angle={270} position="left" style={{ textAnchor: 'middle' }}>
-              Degrees Celsius
+              Degrees Celsius&deg;
             </Label>
           </YAxis>
 
