@@ -1,16 +1,7 @@
-import React from 'react';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  Label,
-  ResponsiveContainer,
-  Legend,
-  Tooltip
-} from 'recharts';
-import Title from './Title';
 import moment from 'moment';
+import React from 'react';
+import { Area, AreaChart, Label, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import Title from './Title';
 
 function genLabel(value) {
   const m = moment(value);
@@ -76,8 +67,6 @@ export default function Chart(props) {
 
           <Area type="monotone" dataKey="min" stroke="blue" fillOpacity={1} fill="url(#colorMin)" />
           <Area type="monotone" dataKey="max" stroke="red" fillOpacity={1} fill="url(#colorMax)" />
-
-          <Legend />
         </AreaChart>
       </ResponsiveContainer>
     </React.Fragment>

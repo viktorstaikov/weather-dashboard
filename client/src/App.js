@@ -2,13 +2,13 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import './App.css';
-import Header from './components/Header';
 import Chart from './components/Chart';
+import Header from './components/Header';
 import WeatherApi from './services/weather-api.service';
 
 const styles = theme => ({
