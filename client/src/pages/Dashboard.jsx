@@ -58,9 +58,7 @@ export class Dashboard extends Component {
   }
 
   getForecast(day) {
-    console.log('fetching forecast');
     WeatherApi.getDailyForecast(day).then(f => {
-      console.log('forecast fetched', f);
       this.setState({ dailyForecast: f });
     });
   }
@@ -83,7 +81,7 @@ export class Dashboard extends Component {
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={12} lg={12}>
-              <Paper className={fixedHeightPaper}>
+              <Paper>
                 <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
               </Paper>
             </Grid>
@@ -95,7 +93,7 @@ export class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  classes: PropTypes.symbol.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Dashboard);

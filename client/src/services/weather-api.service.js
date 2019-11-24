@@ -8,28 +8,10 @@ class WeatherService {
     });
   }
 
-  static getDailyForecast(day) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve({
-          temp: 6.68,
-          temp_min: 6.68,
-          temp_max: 6.68,
-          pressure: 1013,
-          humidity: 88,
-          weather: {
-            id: 804,
-            main: 'Clouds',
-            description: 'overcast clouds',
-            icon: '04d',
-          },
-          clouds: 100,
-          wind: {
-            speed: 4.68,
-            deg: 103,
-          },
-        });
-      }, 2000);
+  static getDailyForecast(date) {
+    const url = process.env.REACT_APP_BACKEND_URL;
+    return axios.get(`${url}/api/weather/forecast`, { params: { date } }).then(r => {
+      return r.data;
     });
   }
 }

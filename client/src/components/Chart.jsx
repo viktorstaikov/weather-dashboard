@@ -49,8 +49,8 @@ export default function Chart(props) {
               <stop offset="95%" stopColor="blue" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorMax" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="red" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="red" stopOpacity={0} />
+              <stop offset="5%" stopColor="orange" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="orange" stopOpacity={0} />
             </linearGradient>
           </defs>
 
@@ -62,8 +62,8 @@ export default function Chart(props) {
             </Label>
           </YAxis>
 
-          <Area type="monotone" dataKey="min" stroke="blue" fillOpacity={1} fill="url(#colorMin)" />
           <Area type="monotone" dataKey="max" stroke="red" fillOpacity={1} fill="url(#colorMax)" />
+          <Area type="monotone" dataKey="min" stroke="blue" fillOpacity={1} fill="url(#colorMin)" />
         </AreaChart>
       </ResponsiveContainer>
     </React.Fragment>

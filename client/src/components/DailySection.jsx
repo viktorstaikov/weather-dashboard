@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Forecast from './Forecast';
+import Loading from './Loading';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,9 +51,6 @@ export class DailySection extends Component {
   constructor() {
     super();
 
-    // const [value, setValue] = React.useState(0);
-    // this.setValue = setValue;
-    // this.value = value;
     this.state = { value: 0 };
   }
 
@@ -67,9 +65,7 @@ export class DailySection extends Component {
   }
 
   render() {
-    // const classes = useStyles();
-
-    const { classes, days, getForecast, forecast } = this.props;
+    const { classes, days, forecast } = this.props;
 
     const today = moment();
     const labels = days.map(d => {
@@ -81,7 +77,7 @@ export class DailySection extends Component {
     });
     const tabs = labels.map((l, idx) => <Tab label={l} {...a11yProps(idx)} />);
     const panels = days.map((d, idx) => {
-      const content = this.state.value === idx ? <Forecast data={forecast}></Forecast> : 'Loading...';
+      const content = this.state.value === idx && forecast ? <Forecast data={forecast} /> : <Loading loading={true} />;
 
       return (
         <TabPanel value={this.state.value} index={idx} key={idx} dir="ltr">
