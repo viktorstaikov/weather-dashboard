@@ -6,3 +6,5 @@ Each project is started by running `npm start` in it's root directory.
 
 The API can be reached on http://localhost:1337.
 To open the client go to http://localhost:3000.
+
+![Screenshot](screenshot.png?raw=true 'Screenshot')
