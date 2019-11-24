@@ -7,6 +7,7 @@ module.exports = Router => {
 
   router.get('/hi', controller.hi);
   router.get('/temp_series', controller.temp_series);
+  router.get('/forecast', controller.forecast);
 
   return router;
 };
