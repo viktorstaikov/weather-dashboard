@@ -70,10 +70,14 @@ export class DailySection extends Component {
     const today = moment();
     const labels = days.map(d => {
       const m = moment(d);
-      if (m.isSame(today, 'day')) {
-        return 'Today';
-      }
-      return m.format('dddd');
+      const day = m.isSame(today, 'day') ? 'Today' : m.format('dddd');
+      const date = m.format('DD.MM');
+      return (
+        <div>
+          <Typography variant="h6">{day}</Typography>
+          <Typography variant="subtitle2">{date}</Typography>
+        </div>
+      );
     });
     const tabs = labels.map((l, idx) => <Tab label={l} {...a11yProps(idx)} />);
     const panels = days.map((d, idx) => {
