@@ -8,16 +8,13 @@ function genLabel(value) {
 
   const startOfDay = moment(value);
   const today = moment();
-  const tomorrow = moment().add(1, 'day');
 
   let s = value;
 
   if (startOfDay.isSame(today, 'day')) {
     s = 'Today, ' + m.format('HH:mm');
-  } else if (startOfDay.isSame(tomorrow, 'day')) {
-    s = 'Tomorrow, ' + m.format('HH:mm');
   } else {
-    s = m.format('DD.MM, HH:mm');
+    s = m.format('ddd, HH:mm');
   }
   return s;
 }
