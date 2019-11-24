@@ -41,7 +41,7 @@ export default function Forecast(props) {
 
   const { data } = props;
 
-  const { temp, pressure, humidity, weather, clouds, wind } = data;
+  const { temp, pressure, humidity, weather, clouds, wind, rain } = data;
 
   return (
     <Grid container spacing={3} className={classes.container}>
@@ -105,6 +105,14 @@ export default function Forecast(props) {
               <TableCell>
                 <WindChart speed={wind.speed} deg={wind.deg}></WindChart>
               </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <Typography variant="body1" gutterBottom>
+                  Rain
+                </Typography>
+              </TableCell>
+              <TableCell>{Math.floor(rain)} mm</TableCell>
             </TableRow>
           </TableBody>
         </Table>

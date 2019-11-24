@@ -28,6 +28,7 @@ const styles = theme => ({
   },
   fixedHeight: {
     height: 240,
+    // minHeight: 240,
   },
 });
 export class Dashboard extends Component {

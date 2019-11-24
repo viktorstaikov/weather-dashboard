@@ -78,7 +78,8 @@ class WeatherSeries {
         humidity: avgItem.humidity,
         weather: avgItem.weather,
         clouds: avgItem.clouds,
-        wind: avgItem.wind
+        wind: avgItem.wind,
+        rain: avgItem.rain
       };
       return r;
     });
@@ -94,7 +95,8 @@ class WeatherSeries {
       humidity: item.main.humidity,
       weather: item.weather[0],
       clouds: item.clouds.all,
-      wind: item.wind
+      wind: item.wind,
+      rain: item.rain ? item.rain['3h'] : 0
     };
   }
 
@@ -117,7 +119,8 @@ class WeatherSeries {
           wind: {
             speed: res.wind.speed + curr.wind.speed,
             deg: res.wind.deg + curr.wind.deg
-          }
+          },
+          rain: res.rain + (curr.rain || 0)
         };
       },
       {
@@ -131,7 +134,8 @@ class WeatherSeries {
         wind: {
           speed: 0,
           deg: 0
-        }
+        },
+        rain: 0
       }
     );
 
@@ -146,7 +150,8 @@ class WeatherSeries {
       wind: {
         speed: totalItem.wind.speed / count,
         deg: totalItem.wind.deg / count
-      }
+      },
+      rain: totalItem.rain / count
     };
     return avgItem;
   }
