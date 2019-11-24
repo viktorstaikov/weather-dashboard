@@ -60,6 +60,36 @@ class WeatherSeries {
     );
   }
 
+  async getPressureSeries() {
+    return this.data.then(({ list }) => {
+      const mapped = list.map(i => this.mapItem(i));
+      const series = mapped.map(item => {
+        return { timestamp: item.timestamp, pressure: item.pressure };
+      });
+      return series;
+    });
+  }
+
+  async getHumiditySeries() {
+    return this.data.then(({ list }) => {
+      const mapped = list.map(i => this.mapItem(i));
+      const series = mapped.map(item => {
+        return { timestamp: item.timestamp, humidity: item.humidity };
+      });
+      return series;
+    });
+  }
+
+  async getRainSeries() {
+    return this.data.then(({ list }) => {
+      const mapped = list.map(i => this.mapItem(i));
+      const series = mapped.map(item => {
+        return { timestamp: item.timestamp, rain: item.rain };
+      });
+      return series;
+    });
+  }
+
   async getForecast(date) {
     const m = moment(date);
     return this.data.then(({ list }) => {
