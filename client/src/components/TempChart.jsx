@@ -19,7 +19,7 @@ function genLabel(value) {
   return s;
 }
 
-export default function Chart(props) {
+export default function TempChart(props) {
   const { series } = props;
   const mapped = !series
     ? []

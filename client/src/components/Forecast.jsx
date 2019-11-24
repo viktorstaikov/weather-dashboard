@@ -112,7 +112,7 @@ export default function Forecast(props) {
                   Rain
                 </Typography>
               </TableCell>
-              <TableCell>{Math.floor(rain)} mm</TableCell>
+              <TableCell>{Math.ceil(rain)} mm</TableCell>
             </TableRow>
           </TableBody>
         </Table>
