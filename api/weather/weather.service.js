@@ -103,7 +103,7 @@ class WeatherSeries {
 
     const totalItem = items.reduce(
       (res, curr, idx, arr) => {
-        if (idx === arr.length / 2) {
+        if (idx === Math.floor(arr.length / 2)) {
           res.weather = curr.weather;
         }
         return {
