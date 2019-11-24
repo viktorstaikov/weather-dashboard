@@ -54,12 +54,10 @@ export default function Forecast(props) {
             <TableRow>
               <TableCell>
                 <Typography variant="body1" gutterBottom>
-                  Temperature C&deg; (min - max)
+                  Temperature C&deg;
                 </Typography>
               </TableCell>
-              <TableCell>
-                {Math.ceil(temp)}&deg; ({Math.ceil(temp_min)}&deg; - {Math.ceil(temp_max)}&deg;)
-              </TableCell>
+              <TableCell>{Math.ceil(temp)}&deg;</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
