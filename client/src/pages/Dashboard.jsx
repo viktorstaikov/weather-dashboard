@@ -1,14 +1,15 @@
 import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import TempChart from '../components/TempChart';
 import DailySection from '../components/DailySection';
 import DataChart from '../components/DataChart';
+import TempChart from '../components/TempChart';
 import WeatherApi from '../services/weather-api.service';
 
 const styles = theme => ({
@@ -100,30 +101,23 @@ export class Dashboard extends Component {
             <DailySection days={days} getForecast={this.getForecast.bind(this)} forecast={dailyForecast} />
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel defaultExpanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography className={classes.heading}>Humidity chart</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={fixedHeightPaper}>
-            <DataChart series={humiditySeries} title="Humidity" yAxisLabel="Percentage %" color="yellow" />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
 
         <ExpansionPanel defaultExpanded={true}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography className={classes.heading}>Pressure chart</Typography>
+            <Typography className={classes.heading}>More graphs</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={fixedHeightPaper}>
-            <DataChart series={pressureSeries} title="Atmospheric pressure" yAxisLabel="Hectopascals" color="green" />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-
-        <ExpansionPanel defaultExpanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography className={classes.heading}>Rain chart</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={fixedHeightPaper}>
-            <DataChart series={rainSeries} title="Rain volume per 3 hours" yAxisLabel="mm" color="gray" />
+            <Grid container spacing={3}>
+              <Grid item xs={4} className={fixedHeightPaper}>
+                <DataChart series={humiditySeries} title="Humidity" yAxisLabel="Percentage %" />
+              </Grid>
+              <Grid item xs={4} className={fixedHeightPaper}>
+                <DataChart series={pressureSeries} title="Atmospheric pressure" yAxisLabel="Hectopascals" />
+              </Grid>
+              <Grid item xs={4} className={fixedHeightPaper}>
+                <DataChart series={rainSeries} title="Rain volume per 3 hours" yAxisLabel="mm" />
+              </Grid>
+            </Grid>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </Container>
